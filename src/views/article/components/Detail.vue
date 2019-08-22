@@ -38,6 +38,7 @@
 
                     <el-select
                       v-model="form.category_id"
+                      clearable
                       filterable
                       remote
                       :remote-method="findCategories"

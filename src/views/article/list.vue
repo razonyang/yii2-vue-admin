@@ -7,6 +7,18 @@
       <el-select v-model="listQuery.filter.status" :placeholder="$t('common.status')" clearable class="filter-item" style="width: 130px">
         <el-option v-for="item in statuses" :key="item.value" :label="item.label" :value="item.value" />
       </el-select>
+      <el-select v-model="listQuery.filter.category_id" :placeholder="$t('article.category')" clearable class="filter-item" style="width: 130px"
+        filterable
+        remote
+        :remote-method="findCategories"
+        :loading="loading">
+        <el-option
+          v-for="item in categories"
+          :key="item.id"
+          :label="item.name"
+          :value="item.id">
+        </el-option>
+      </el-select>
       <el-button v-waves class="filter-item" type="primary" icon="el-icon-search" @click="search">
         {{ $t('common.search') }}
       </el-button>
@@ -86,6 +98,7 @@
 
 <script>
 import { findArticles, deleteArticle } from '@/api/article'
+import { findCategories } from '@/api/article-category'
 import waves from '@/directive/waves' // waves directive
 import Pagination from '@/components/Pagination' // Secondary package based on el-pagination
 import { getStatuses, getStatusName } from '@/utils/status'
@@ -111,6 +124,7 @@ export default {
       total: 0,
       listLoading: true,
       statuses: getStatuses(),
+      categories: [],
       listQuery: {
         page: 1,
         limit: 20,
@@ -137,6 +151,11 @@ export default {
         this.list = response.data.items
         this.total = response.data.meta.total_count
         this.listLoading = false
+      })
+    },
+    findCategories(query) {
+      findCategories({ filter: { name: query } } ).then(response => {
+        this.categories = response.data.items
       })
     },
     getStatusName,
