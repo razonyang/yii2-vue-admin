@@ -33,7 +33,26 @@
                   </el-form-item>
                 </el-col>
 
-                <el-col :span="6" />
+                <el-col :span="6">
+                  <el-form-item label-width="120px" :label="$t('common.category')" class="postInfo-container-item" prop="release_time">
+
+                    <el-select
+                      v-model="form.category_id"
+                      filterable
+                      remote
+                      :remote-method="findCategories"
+                      :loading="loading">
+                      <el-option
+                        v-for="item in categories"
+                        :key="item.id"
+                        :label="item.name"
+                        :value="item.id">
+                      </el-option>
+                    </el-select>
+                    
+                  </el-form-item>
+                </el-col>
+
               </el-row>
             </div>
           </el-col>
@@ -62,10 +81,12 @@ import Upload from '@/components/Upload/SingleImage'
 import MDinput from '@/components/MDinput'
 import Sticky from '@/components/Sticky'
 import { findArticle, createArticle, updateArticle } from '@/api/article'
+import { findCategories } from '@/api/article-category'
 import { StatusDropdown } from '@/components/Dropdown'
 
 const defaultForm = {
   status: 1,
+  category_id: undefined,
   title: '',
   content: '',
   summary: '',
@@ -95,6 +116,7 @@ export default {
     return {
       form: Object.assign({}, defaultForm),
       loading: false,
+      categories: [],
       rules: {
         title: [{ validator: validateRequire }],
         summary: [{ validator: validateRequire }],
@@ -142,6 +164,12 @@ export default {
 
       findArticle(this.id, { expand: 'version,content' }).then(response => {
         this.form = response.data
+        this.categories = [
+          {
+            id: response.data.category_id,
+            name: response.data.category_name
+          }
+        ]
 
         // set tagsview title
         this.setTagsViewTitle()
@@ -160,6 +188,11 @@ export default {
     setPageTitle() {
       const title = this.$t('route.articleEdit')
       document.title = `${title} - ${this.form.id}`
+    },
+    findCategories(query) {
+      findCategories({ filter: { name: query } } ).then(response => {
+        this.categories = response.data.items
+      })
     },
     submit() {
       this.$refs.form.validate(valid => {

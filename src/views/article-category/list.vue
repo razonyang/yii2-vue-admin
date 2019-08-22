@@ -2,16 +2,12 @@
   <div class="app-container">
     <div class="filter-container">
       <el-input v-model="listQuery.filter.id" :placeholder="$t('common.id')" style="width: 80px;" class="filter-item" @keyup.enter.native="search" />
-      <el-input v-model="listQuery.filter.title" :placeholder="$t('common.title')" style="width: 120px;" class="filter-item" @keyup.enter.native="search" />
-      <el-input v-model="listQuery.filter.author" :placeholder="$t('common.author')" style="width: 120px;" class="filter-item" @keyup.enter.native="search" />
-      <el-select v-model="listQuery.filter.status" :placeholder="$t('common.status')" clearable class="filter-item" style="width: 130px">
-        <el-option v-for="item in statuses" :key="item.value" :label="item.label" :value="item.value" />
-      </el-select>
+      <el-input v-model="listQuery.filter.name" :placeholder="$t('common.name')" style="width: 200px;" class="filter-item" @keyup.enter.native="search" />
       <el-button v-waves class="filter-item" type="primary" icon="el-icon-search" @click="search">
         {{ $t('common.search') }}
       </el-button>
-      <router-link to="/article/create/">
-        <el-button v-if="checkPermission(['articleCreate'])" class="filter-item" type="success" icon="el-icon-plus">
+      <router-link to="/article-category/create/">
+        <el-button v-if="checkPermission(['articleCategoryCreate'])" class="filter-item" type="success" icon="el-icon-plus">
           {{ $t('common.create') }}
         </el-button>
       </router-link>
@@ -24,33 +20,9 @@
         </template>
       </el-table-column>
 
-      <el-table-column align="center" :label="$t('common.category')">
+      <el-table-column align="center" :label="$t('common.name')">
         <template slot-scope="scope">
-          <span>{{ scope.row.category_name }}</span>
-        </template>
-      </el-table-column>
-
-      <el-table-column align="center" :label="$t('common.title')">
-        <template slot-scope="scope">
-          <span>{{ scope.row.title }}</span>
-        </template>
-      </el-table-column>
-
-      <el-table-column align="center" :label="$t('common.author')">
-        <template slot-scope="scope">
-          <span>{{ scope.row.author }}</span>
-        </template>
-      </el-table-column>
-
-      <el-table-column width="100px" align="center" :label="$t('common.status')">
-        <template slot-scope="scope">
-          <span>{{ getStatusName(scope.row.status) }}</span>
-        </template>
-      </el-table-column>
-
-      <el-table-column width="180px" align="center" :label="$t('common.releaseTime')">
-        <template slot-scope="scope">
-          <span>{{ formatTimestamp(scope.row.release_time) }}</span>
+          <span>{{ scope.row.name }}</span>
         </template>
       </el-table-column>
 
@@ -68,12 +40,12 @@
 
       <el-table-column align="center" :label="$t('common.actions')" width="240px">
         <template slot-scope="scope">
-          <router-link v-if="checkPermission(['articleUpdate'])" :to="'/article/edit/'+scope.row.id">
+          <router-link v-if="checkPermission(['articleCategoryUpdate'])" :to="'/article-category/edit/'+scope.row.id">
             <el-button type="primary" size="small" icon="el-icon-edit">
               {{ $t('common.edit') }}
             </el-button>
           </router-link>
-          <el-button v-if="checkPermission(['articleDelete'])" type="danger" size="small" icon="el-icon-delete" @click="handleDelete(scope.row.id)">
+          <el-button v-if="checkPermission(['articleCategoryDelete'])" type="danger" size="small" icon="el-icon-delete" @click="handleDelete(scope.row.id)">
             {{ $t('common.delete') }}
           </el-button>
         </template>
@@ -85,7 +57,7 @@
 </template>
 
 <script>
-import { findArticles, deleteArticle } from '@/api/article'
+import { findCategories, deleteCategory } from '@/api/article-category'
 import waves from '@/directive/waves' // waves directive
 import Pagination from '@/components/Pagination' // Secondary package based on el-pagination
 import { getStatuses, getStatusName } from '@/utils/status'
@@ -116,9 +88,7 @@ export default {
         limit: 20,
         filter: {
           id: '',
-          title: '',
-          author: '',
-          status: ''
+          name: ''
         }
       }
     }
@@ -133,7 +103,7 @@ export default {
     },
     getList() {
       this.listLoading = true
-      findArticles(this.listQuery).then(response => {
+      findCategories(this.listQuery).then(response => {
         this.list = response.data.items
         this.total = response.data.meta.total_count
         this.listLoading = false
@@ -142,7 +112,7 @@ export default {
     getStatusName,
     handleDelete(id) {
       this.$confirm(this.$t('confirm.delete')).then(() => {
-        deleteArticle(id).then(response => {
+        deleteCategory(id).then(response => {
           this.getList()
           this.$message({
             type: 'success',
