@@ -34,7 +34,7 @@
                 </el-col>
 
                 <el-col :span="6">
-                  <el-form-item label-width="120px" :label="$t('common.category')" class="postInfo-container-item" prop="release_time">
+                  <el-form-item label-width="120px" :label="$t('article.category')" class="postInfo-container-item" prop="release_time">
 
                     <el-select
                       v-model="form.category_id"

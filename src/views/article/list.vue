@@ -24,7 +24,7 @@
         </template>
       </el-table-column>
 
-      <el-table-column align="center" :label="$t('common.category')">
+      <el-table-column align="center" :label="$t('article.category')">
         <template slot-scope="scope">
           <span>{{ scope.row.category_name }}</span>
         </template>

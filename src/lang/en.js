@@ -1,4 +1,7 @@
 export default {
+  article: {
+    category: 'Category'
+  },
   common: {
     account: 'Account',
     actions: 'Actions',
@@ -9,7 +12,7 @@ export default {
     cover: 'Cover',
     create: 'Create',
     createSuccessfully: 'Create Successfully',
-    createTime: 'CreateTime',
+    createTime: 'Create Time',
     dashboard: 'Dashboard',
     data: 'Data',
     delete: 'Delete',
@@ -54,10 +57,14 @@ export default {
     small: 'Small'
   },
   route: {
-    article: 'Aricle',
+    article: 'Article',
     articleCreate: 'Create Article',
     articleEdit: 'Edit Article',
     articleUpdate: 'Udpate Article',
+    articleCategory: 'Article Category',
+    articleCategoryCreate: 'Create Article Category',
+    articleCategoryEdit: 'Edit Article Category',
+    articleCategoryUpdate: 'Udpate Article Category',
     dashboard: 'Dashboard',
     profile: 'Profile',
     role: 'Role',

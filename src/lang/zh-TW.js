@@ -1,12 +1,20 @@
 export default {
+  article: {
+    category: '分類'
+  },
   common: {
     account: '帳號',
     actions: '操作',
     active: '正常',
+    author: '作者',
     cancel: '取消',
+    content: '內容',
+    cover: '封面',
     create: '新增',
+    createSuccessfully: '新增成功',
     createTime: '新增時間',
     dashboard: '儀表盤',
+    data: '數據',
     delete: '刪除',
     description: '描述',
     edit: '編輯',
@@ -17,20 +25,27 @@ export default {
     language: '語言',
     lastName: '姓氏',
     login: '登錄',
-    logout: '注銷登錄',
+    logout: '註銷登錄',
     name: '名稱',
     newPassword: '新密碼',
     password: '密碼',
+    permission: '權限',
     profile: '個人資料',
+    releaseTime: '發布時間',
     role: '角色',
     search: '搜索',
     session: '會話',
     status: '狀態',
     submit: '提交',
+    success: '成功',
+    summary: '摘要',
+    title: '標題',
     unknown: '未知',
     update: '更新',
+    updateSuccessfully: '更新成功',
     updateTime: '更新時間',
-    username: '用戶名'
+    username: '用戶名',
+    value: '值'
   },
   confirm: {
     delete: '您確定要刪除嗎？'
@@ -42,11 +57,21 @@ export default {
     small: '細小'
   },
   route: {
+    article: '文章管理',
+    articleCreate: '新增文章',
+    articleEdit: '編輯文章',
+    articleUpdate: '更新文章',
+    articleCategory: '文章分類',
+    articleCategoryCreate: '新增文章分類',
+    articleCategoryEdit: '編輯文章分類',
+    articleCategoryUpdate: '更新文章分類',
     dashboard: '首頁',
     profile: '個人資料',
     role: '角色管理',
     roleCreate: '新增角色',
     roleEdit: '編輯角色',
+    setting: '系統設置',
+    settingEdit: '更新設置',
     system: '系統管理',
     systemSettings: '系統設置',
     user: '用戶管理',
@@ -54,6 +79,7 @@ export default {
     userEdit: '編輯用戶'
   },
   validate: {
-    required: '{field}爲必填項'
+    invalid: '{field}不正確',
+    required: '{field}為必填項'
   }
 }

@@ -1,4 +1,7 @@
 export default {
+  article: {
+    category: '分类'
+  },
   common: {
     account: '帐号',
     actions: '操作',
@@ -58,6 +61,10 @@ export default {
     articleCreate: '新增文章',
     articleEdit: '编辑文章',
     articleUpdate: '更新文章',
+    articleCategory: '文章分类',
+    articleCategoryCreate: '新增文章分类',
+    articleCategoryEdit: '编辑文章分类',
+    articleCategoryUpdate: '更新文章分类',
     dashboard: '首页',
     profile: '个人资料',
     role: '角色管理',
