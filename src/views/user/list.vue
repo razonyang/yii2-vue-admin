@@ -130,7 +130,7 @@ export default {
       this.listLoading = true
       findUsers(this.listQuery).then(response => {
         this.list = response.data.items
-        this.total = response.data.meta.total_amount
+        this.total = response.data.meta.total_count
         this.listLoading = false
       })
     },
