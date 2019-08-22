@@ -7,17 +7,23 @@
       <el-select v-model="listQuery.filter.status" :placeholder="$t('common.status')" clearable class="filter-item" style="width: 130px">
         <el-option v-for="item in statuses" :key="item.value" :label="item.label" :value="item.value" />
       </el-select>
-      <el-select v-model="listQuery.filter.category_id" :placeholder="$t('article.category')" clearable class="filter-item" style="width: 130px"
+      <el-select
+        v-model="listQuery.filter.category_id"
+        :placeholder="$t('article.category')"
+        clearable
+        class="filter-item"
+        style="width: 130px"
         filterable
         remote
         :remote-method="findCategories"
-        :loading="loading">
+        :loading="loading"
+      >
         <el-option
           v-for="item in categories"
           :key="item.id"
           :label="item.name"
-          :value="item.id">
-        </el-option>
+          :value="item.id"
+        />
       </el-select>
       <el-button v-waves class="filter-item" type="primary" icon="el-icon-search" @click="search">
         {{ $t('common.search') }}
@@ -154,7 +160,7 @@ export default {
       })
     },
     findCategories(query) {
-      findCategories({ filter: { name: query } } ).then(response => {
+      findCategories({ filter: { name: query }}).then(response => {
         this.categories = response.data.items
       })
     },

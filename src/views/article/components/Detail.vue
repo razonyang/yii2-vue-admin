@@ -42,15 +42,16 @@
                       filterable
                       remote
                       :remote-method="findCategories"
-                      :loading="loading">
+                      :loading="loading"
+                    >
                       <el-option
                         v-for="item in categories"
                         :key="item.id"
                         :label="item.name"
-                        :value="item.id">
-                      </el-option>
+                        :value="item.id"
+                      />
                     </el-select>
-                    
+
                   </el-form-item>
                 </el-col>
 
@@ -191,7 +192,7 @@ export default {
       document.title = `${title} - ${this.form.id}`
     },
     findCategories(query) {
-      findCategories({ filter: { name: query } } ).then(response => {
+      findCategories({ filter: { name: query }}).then(response => {
         this.categories = response.data.items
       })
     },

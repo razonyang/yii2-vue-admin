@@ -13,7 +13,7 @@ export default function checkPermission(permissions) {
       return grantedPermissions.includes(permisson)
     })
 
-    return hasPermission ? true : false
+    return !!hasPermission
   }
 
   return false

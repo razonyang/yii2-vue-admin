@@ -17,20 +17,20 @@ export default {
       type: Array,
       default: function() {
         return [
-                {
-                    label: 'English',
-                    value: 'en'
-                },
-                {
-                    label: '简体中文',
-                    value: 'zh-CN'
-                },
-                {
-                    label: '繁體中文',
-                    value: 'zh-TW'
-                }
-                ]
-        }
+          {
+            label: 'English',
+            value: 'en'
+          },
+          {
+            label: '简体中文',
+            value: 'zh-CN'
+          },
+          {
+            label: '繁體中文',
+            value: 'zh-TW'
+          }
+        ]
+      }
     }
   }
 }

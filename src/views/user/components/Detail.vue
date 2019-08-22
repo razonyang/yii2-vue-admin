@@ -183,7 +183,7 @@ export default {
         message: this.isEdit() ? this.$t('common.updateSuccessfully') : this.$t('common.createSuccessfully'),
         type: 'success',
         duration: 2000
-      }) 
+      })
       if (this.isEdit()) {
         this.getDetail()
       } else {

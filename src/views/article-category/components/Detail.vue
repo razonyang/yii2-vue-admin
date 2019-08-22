@@ -16,7 +16,7 @@
               {{ $t('common.name') }}
             </MDinput>
           </el-form-item>
-        
+
         </el-row>
       </div>
     </el-form>
@@ -54,7 +54,7 @@ export default {
       form: Object.assign({}, defaultForm),
       loading: false,
       rules: {
-        name: [{ validator: validateRequire }],
+        name: [{ validator: validateRequire }]
       },
       tempRoute: {}
     }
