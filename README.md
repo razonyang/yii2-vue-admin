@@ -6,8 +6,8 @@ Vue Element Admin Template for Yii2.
 Preview
 -------
 
-- [Front end and API](https://yii.errlogs.com), build on top of [Yii2 App Template](https://github.com/razonyang/yii2-app-template)
-- [Admin](https://admin.yii.errlogs.com)
+- [Front end and API](https://yii2.razonyang.com), build on top of [Yii2 App Template](https://github.com/razonyang/yii2-app-template)
+- [Admin](https://admin.yii2.razonyang.com)
 
 Getting started
 ---------------
